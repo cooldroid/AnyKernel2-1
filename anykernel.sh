@@ -36,11 +36,11 @@ dump_boot;
 
 # init.rc
 backup_file init.rc
-insert_line init.rc "init.qcom.power.rc" after "import /init.environ.rc" "import /init.qcom.power.rc\n";
+insert_line init.rc "init.renderzenith.rc" after "import /init.environ.rc" "import /init.renderzenith.rc\n";
 
 # init.qcom.rc
-backup_file init.qcom.rc
-remove_section init.qcom.rc "service qcom-post-boot" "oneshot"
+backup_file system/vendor/etc/init/hw/init.qcom.rc
+remove_section system/vendor/etc/init/hw/init.qcom.rc "service qcom-post-boot" "oneshot"
 
 # end ramdisk changes
 

@@ -48,7 +48,7 @@ $bb chmod -R 755 /tmp/anykernel/tools /tmp/anykernel/bin;
 ui_print "$(file_getprop /tmp/anykernel/anykernel.sh kernel.string)";
 ui_print " ";
 ui_print " ";
-ui_print "          for the OP5!";
+ui_print "          for the OP3!";
 ui_print " ";
 ui_print " ";
 ui_print " ";
@@ -76,6 +76,7 @@ if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.devicecheck)" == 1 ]; then
 fi;
 
 ui_print "Installing kernel...";
+  mount -o rw,remount -t auto /system;
 for i in $($bb --list); do
   $bb ln -s $bb /tmp/anykernel/bin/$i;
 done;
@@ -85,6 +86,7 @@ fi;
 PATH="/tmp/anykernel/bin:$PATH" $bb ash /tmp/anykernel/anykernel.sh $2;
 if [ $? != "0" ]; then
   abort;
+  mount -o ro,remount -t auto /system;
 fi;
 
 if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.modules)" == 1 ]; then
